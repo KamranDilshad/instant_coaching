@@ -84,24 +84,19 @@ const Admin = () => {
 					<div>
 						{themeSettings && <ThemeSettings />}
 
-						{/* <Routes>
-						
-							<Route path='/admin' element={<Ecommerce />} />
+						<Routes>
+							<Route path='/' element={<Ecommerce />} />
 							<Route path='/revenue' element={<Ecommerce />} />
 
-							
 							<Route path='/employees' element={<Employees />} />
 							<Route path='/customers' element={<Customers />} />
 
-				
-
-							
 							<Route path='/line' element={<Line />} />
-						
+
 							<Route path='/pie' element={<Checkcomp />} />
-						
+
 							<Route path='/stacked' element={<Stacked />} />
-						</Routes> */}
+						</Routes>
 					</div>
 					<Footer />
 				</div>

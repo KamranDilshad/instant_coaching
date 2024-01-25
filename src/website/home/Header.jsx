@@ -89,16 +89,44 @@ const Header = () => {
 								</ul>
 							</li>
 
-							<li>
-								<Link to={'/coachregister'}>
-									<span className='getstarted scrollto'>Become a Coach</span>
-								</Link>
-							</li>
-							<li>
-								<Link to={'/traineeregister'}>
-									<span className='getstarted scrollto'>Become a Trainee</span>
-								</Link>
-							</li>
+							{isLoggedIn ? (
+								<li className='dropdown'>
+									<a href='#'>
+										<img
+											src={user.picture}
+											alt='User'
+											className='user-avatar'
+										/>
+										<span>{user.username}</span>{' '}
+										<i className='bi bi-chevron-down'></i>
+									</a>
+									<ul>
+										<li>
+											<Link to='/profile'>View Profile</Link>
+										</li>
+										<li>
+											<button onClick={handleLogout}>Logout</button>
+										</li>
+									</ul>
+								</li>
+							) : (
+								<>
+									<li>
+										<Link to={'/coachregister'}>
+											<span className='getstarted scrollto'>
+												Become a Coach
+											</span>
+										</Link>
+									</li>
+									<li>
+										<Link to={'/traineeregister'}>
+											<span className='getstarted scrollto'>
+												Become a Trainee
+											</span>
+										</Link>
+									</li>
+								</>
+							)}
 						</ul>
 						<i className='bi bi-list mobile-nav-toggle'></i>
 					</nav>

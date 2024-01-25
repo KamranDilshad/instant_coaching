@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import '../assets/css/coachregistration.css';
+import '../../assets/css/coachregistration.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { registerCoach } from '../../redux/actions/CoachAction';
+import { registerCoach } from '../../../redux/actions/CoachAction';
 
 const CoachRegisteration = () => {
 	const dispatch = useDispatch();
