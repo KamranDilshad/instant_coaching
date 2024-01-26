@@ -5,9 +5,9 @@ import Login from './website/pages/Login';
 import Home from './website/home/Home';
 import AboutUs from './website/pages/AboutUs';
 import CoachRegisteration from './website/pages/coach/CoachRegisteration';
-import CricketCoaches from './website/pages/CricketCoaches';
+import CricketCoaches from './website/pages/coach/CricketCoaches';
 import FootballCoaches from './website/pages/FootballCoaches';
-import CricketServesis from './website/pages/CricketServesis';
+import CricketServesis from './website/pages/coach/CricketServesis';
 
 import TraineeRegister from './website/pages/TraineeRegister';
 import MainAdmin from './admin/MainAdmin';
@@ -15,6 +15,7 @@ import AdminRoute from './admin/pages/Charts/AdminRoute';
 import ProfileView from './website/pages/coach/Profile';
 import LunchProgram from './website/pages/coach/LunchProgram';
 import ProgramTableView from './website/pages/coach/ViewProgram';
+import StripePaymentForm from './website/pages/coach/PaymentCard';
 function Routing() {
 	return (
 		<BrowserRouter>
@@ -32,6 +33,7 @@ function Routing() {
 				<Route path='/footballcoach' element={<FootballCoaches />} />
 				<Route path='/lunchprogram' element={<LunchProgram />} />
 				<Route path='/viewprogram' element={<ProgramTableView />} />
+				<Route path='/payment' element={<StripePaymentForm />} />
 
 				{/* <Route path='/admin' element={<Navigate to='/admin' replace />} /> */}
 				<Route path='/admin/*' element={<MainAdmin />} />

@@ -1,5 +1,5 @@
 import React from 'react';
-import './curosol.css';
+import './coach/curosol.css';
 import Button from './Button';
 
 const FootballCoaches = () => {

@@ -23,8 +23,11 @@ const Login = () => {
 			password: Yup.string().required('Required'),
 		}),
 		onSubmit: (values) => {
-			// Dispatch the action to post data to Redux
-			dispatch(login());
+			const credentials = {
+				email: values.email,
+				password: values.password,
+			};
+			dispatch(login(credentials));
 		},
 	});
 

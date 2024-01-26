@@ -23,20 +23,46 @@ export const logout = () => ({
 	type: LOGOUT,
 });
 
-export const login = (token) => async (dispatch) => {
-	dispatch(loginRequest());
+export const login = (credentials) => async (dispatch) => {
+	// dispatch(loginRequest());
+
+	// try {
+	// 	const response = await axios.post('/api/user/login', {
+	// 		access_token: token,
+	// 	});
+
+	// 	const { access, user: userData } = response.data;
+	// 	setSession(access, userData);
+
+	// 	dispatch(loginSuccess(userData));
+	// } catch (error) {
+	// 	dispatch(loginFailure(error.message));
+	// }
 
 	try {
-		const response = await axios.post('', {
-			access_token: token,
+		dispatch(loginRequest());
+
+		// Make an API request to authenticate user
+		const response = await fetch('/api/user/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(credentials),
 		});
 
-		const { access, user: userData } = response.data;
-		setSession(access, userData);
+		const data = await response.json();
 
-		dispatch(loginSuccess(userData));
+		if (response.ok) {
+			dispatch(loginSuccess(data.user));
+			// Save JWT token in localStorage or cookies
+			localStorage.setItem('token', data.token);
+			localStorage.setItem('user', data.user);
+		} else {
+			dispatch(loginFailure(data.error));
+		}
 	} catch (error) {
-		dispatch(loginFailure(error.message));
+		dispatch(loginFailure('An error occurred'));
 	}
 };
 
