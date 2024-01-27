@@ -1,4 +1,5 @@
 import axios from '../../axios.js';
+import Swal from 'sweetalert2';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -86,7 +87,15 @@ export const login = (credentials) => async (dispatch) => {
       dispatch(loginFailure(data.error));
     }
   } catch (error) {
-    dispatch(loginFailure('An error occurred'));
+    const errorMessage = error.response?.data?.error || 'An error occurred';
+    dispatch(loginFailure(errorMessage));
+    Swal.fire({
+      title: 'Error!',
+      text: errorMessage,
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+
   }
 
 };
