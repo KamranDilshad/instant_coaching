@@ -16,7 +16,7 @@ const Login = () => {
 		initialValues: {
 			email: '',
 			password: '',
-			userType: 'trainee',
+			role: 'trainee',
 		},
 		validationSchema: Yup.object({
 			email: Yup.string().email('Invalid email address').required('Required'),
@@ -26,6 +26,7 @@ const Login = () => {
 			const credentials = {
 				email: values.email,
 				password: values.password,
+        role: values.role
 			};
 			dispatch(login(credentials));
 		},
@@ -111,11 +112,11 @@ const Login = () => {
 													<label className='radio'>
 														<input
 															type='radio'
-															name='userType'
+															name='role'
 															value='trainee'
-															checked={formik.values.userType === 'trainee'}
+															checked={formik.values.role === 'trainee'}
 															onChange={() =>
-																formik.setFieldValue('userType', 'trainee')
+																formik.setFieldValue('role', 'trainee')
 															}
 														/>
 														<span> Trainee </span>
@@ -124,11 +125,11 @@ const Login = () => {
 													<label className='radio px-3'>
 														<input
 															type='radio'
-															name='userType'
-															value='coach'
-															checked={formik.values.userType === 'coach'}
+															name='role'
+															value='trainer'
+															checked={formik.values.role === 'trainer'}
 															onChange={() =>
-																formik.setFieldValue('userType', 'coach')
+																formik.setFieldValue('role', 'trainer')
 															}
 														/>
 														<span> Coach </span>
