@@ -1,4 +1,5 @@
 import {
+	ADMIN_APPROVED,
 	LOGIN_FAILURE,
 	LOGIN_REQUEST,
 	LOGIN_SUCCESS,
@@ -31,6 +32,12 @@ const authReducer = (state = initialState, action) => {
 				isLoggedIn: true,
 				loading: false,
 				error: null,
+			};
+		case ADMIN_APPROVED:
+			return {
+				...state,
+				loading: false,
+				error: action.payload,
 			};
 		case LOGIN_FAILURE:
 			return {

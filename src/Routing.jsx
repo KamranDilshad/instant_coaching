@@ -16,6 +16,7 @@ import ProfileView from './website/pages/coach/Profile';
 import LunchProgram from './website/pages/coach/LunchProgram';
 import ProgramTableView from './website/pages/coach/ViewProgram';
 import StripePaymentForm from './website/pages/coach/PaymentCard';
+import LoginAdmin from './admin/LoginAdmin';
 function Routing() {
 	return (
 		<BrowserRouter>
@@ -35,16 +36,10 @@ function Routing() {
 				<Route path='/viewprogram' element={<ProgramTableView />} />
 				<Route path='/payment' element={<StripePaymentForm />} />
 
-				{/* <Route path='/admin' element={<Navigate to='/admin' replace />} /> */}
-				<Route path='/admin/*' element={<MainAdmin />} />
+				{/* Admin Route */}
 
-				{/* Redirect to AdminRoutes if the URL is exactly "/admin" */}
-				{/* <Route path='/admin' element={<Navigate to='/admin' replace />} /> */}
-
-				{/* Use the AdminRoutes component for admin-related routes */}
-				{/* <Route path='/admin/*' element={<AdminRoute />} /> */}
-
-				{/* Add more routes as needed */}
+				<Route path='/admin/' element={<LoginAdmin />} />
+				<Route path='/admin/app/*' element={<MainAdmin />} />
 			</Routes>
 		</BrowserRouter>
 	);

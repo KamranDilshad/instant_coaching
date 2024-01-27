@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import '../assets/css/login.css';
-import log from '../assets/img/logo.png';
-import { Link } from 'react-router-dom';
-import { login } from '../../redux/actions/AuthAction';
+// import '../assets/css/login.css';
+// import log from '../';
+import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../redux/actions/AuthAction';
 
-const Login = () => {
+const LoginAdmin = () => {
 	const dispatch = useDispatch();
+	const navigation = useNavigate();
 	// const authState = useSelector((state) => state.auth);
 	const errorMessage = useSelector((state) => state.auth.error);
 	console.log('🚀 ~ Login ~ errorMessage:', errorMessage);
@@ -18,19 +19,25 @@ const Login = () => {
 		initialValues: {
 			email: '',
 			password: '',
-			role: 'trainee',
 		},
 		validationSchema: Yup.object({
 			email: Yup.string().email('Invalid email address').required('Required'),
 			password: Yup.string().required('Required'),
 		}),
-		onSubmit: (values) => {
+		onSubmit: async (values) => {
 			const credentials = {
 				email: values.email,
 				password: values.password,
-				role: values.role,
+				role: 'admin',
 			};
-			dispatch(login(credentials));
+
+			// Dispatch login action
+			await dispatch(login(credentials));
+
+			// Check if the login was successful before navigating
+			if (!errorMessage) {
+				navigation('/admin/app');
+			}
 		},
 	});
 
@@ -53,13 +60,13 @@ const Login = () => {
 												</p>
 												<div class='text-center '>
 													<img
-														src={log}
+														// src={log}
 														class='img-fluid rounded mx-auto d-block'
 														alt='login image'
 													/>
 												</div>
 												<h4 className='mt-3 mb-2 pb-1'>
-													We are The Coaching Team
+													We are The Admin Team
 												</h4>
 											</div>
 
@@ -117,7 +124,7 @@ const Login = () => {
 														</div>
 													) : null}
 												</div>
-
+												{/* 
 												<div className='form-outline mb-2'>
 													<label className='radio'>
 														<input
@@ -144,7 +151,7 @@ const Login = () => {
 														/>
 														<span> Coach </span>
 													</label>
-												</div>
+												</div> */}
 
 												<div className='text-center pt-1 mb-2 '>
 													<button
@@ -198,4 +205,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default LoginAdmin;

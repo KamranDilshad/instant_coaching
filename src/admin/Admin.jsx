@@ -1,31 +1,13 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
-import {
-	Ecommerce,
-	Orders,
-	Calendar,
-	Employees,
-	Stacked,
-	Pyramid,
-	Customers,
-	Kanban,
-	Line,
-	Area,
-	Bar,
-	Pie,
-	Financial,
-	ColorPicker,
-	ColorMapping,
-	Editor,
-} from './pages';
+import { Ecommerce, Employees, Stacked, Customers, Line, Pie } from './pages';
 import '../App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
-import Checkcomp from './pages/Checkcomp';
 
 const Admin = () => {
 	const {
@@ -93,7 +75,7 @@ const Admin = () => {
 
 							<Route path='/line' element={<Line />} />
 
-							<Route path='/pie' element={<Checkcomp />} />
+							<Route path='/pie' element={<Pie />} />
 
 							<Route path='/stacked' element={<Stacked />} />
 						</Routes>
