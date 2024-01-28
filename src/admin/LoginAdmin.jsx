@@ -2,9 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
-// import '../assets/css/login.css';
-// import log from '../';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../redux/actions/AuthAction';
 

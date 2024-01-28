@@ -1,17 +1,8 @@
 import React from 'react';
-import { Navigate, Route, Router, Routes } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({
-	element,
-	isAuthenticated,
-	redirectTo = '/login',
-}) => {
-	console.log('🚀 ~ element:', element);
-	return isAuthenticated ? (
-		<Route element={element} />
-	) : (
-		<Navigate to={redirectTo} replace />
-	);
+const ProtectedRoute = ({ element, isAuthenticated, redirectTo = '/login' }) => {
+    return isAuthenticated ? element : <Navigate to={redirectTo} replace />;
 };
 
 export default ProtectedRoute;

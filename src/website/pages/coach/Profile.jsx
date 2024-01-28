@@ -19,18 +19,18 @@ const ProfileView = () => {
 	const [formData, setFormData] = useState(
 		user.role == 'trainer'
 			? {
-					firstName: user.firstName,
-					lastName: user.lastName,
-					email: user.email,
-					phone: user.phone,
-					category: user.category,
-					subCategory: user.subCategory,
-					_id: user._id,
+					firstName: user?.firstName,
+					lastName: user?.lastName,
+					email: user?.email,
+					phone: user?.phone,
+					category: user?.category,
+					subCategory: user?.subCategory,
+					_id: user?._id,
 			  }
 			: {
-					fullName: user.fullName,
-					email: user.email,
-					_id: user._id,
+					fullName: user?.fullName,
+					email: user?.email,
+					_id: user?._id,
 			  }
 	);
 
