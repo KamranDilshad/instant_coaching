@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import '../assets/css/style.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/actions/AuthAction';
-import { Button } from 'react-bootstrap';
+import avtar from '../assets/img/team/team-4.jpg';
 
 const Header = () => {
 	const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
@@ -98,7 +98,7 @@ const Header = () => {
 								<li className='dropdown'>
 									<a href='#'>
 										<img
-											src={user.image}
+											src={user.role == 'trainer' ? user.image : avtar}
 											alt={`${user.firstName} ${user.lastName}`}
 											style={{
 												width: '50px',
@@ -107,7 +107,9 @@ const Header = () => {
 											}}
 											className='user-avatar'
 										/>
-										<span className='ps-2'>{user.firstName}</span>
+										<span className='ps-2'>
+											{user.role == 'trainer' ? user.firstName : user.fullName}
+										</span>
 										<i className='bi bi-chevron-down'></i>
 									</a>
 									<ul>

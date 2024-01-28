@@ -7,6 +7,7 @@ import FooterSection from '../../home/FooterSection';
 import { useNavigate } from 'react-router-dom';
 import { updateCoach } from '../../../redux/actions/CoachAction';
 import avtar from '../../assets/img/team/team-4.jpg';
+import { updateTrainee } from '../../../redux/actions/TraineesAction';
 
 const ProfileView = () => {
 	const dispatch = useDispatch();
@@ -43,10 +44,14 @@ const ProfileView = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		dispatch(updateCoach(formData));
+		if (user.role == 'trainer') {
+			dispatch(updateCoach(formData));
+		} else {
+			dispatch(updateTrainee(formData));
+		}
 		navigation('/login');
 	};
+
 	console.log('🚀 ~ handleSubmit ~ formData:', formData);
 
 	return (
@@ -84,7 +89,11 @@ const ProfileView = () => {
 									type='text'
 									id={user.role == 'trainer' ? 'firstName' : 'fullName'}
 									name={user.role == 'trainer' ? 'firstName' : 'fullName'}
-									value={formData.firstName}
+									value={
+										user.role == 'trainer'
+											? formData.firstName
+											: formData.fullName
+									}
 									onChange={handleChange}
 									required
 								/>

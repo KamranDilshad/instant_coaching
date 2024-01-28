@@ -33,7 +33,7 @@ export const registerTrainee = (requestData) => (dispatch) => {
 };
 
 export const updateTrainee = (requestData) => (dispatch) => {
-	axios.put(`/api/users/${requestData._id}/`, requestData).then((res) => {
+	axios.patch(`/api/users/${requestData._id}`, requestData).then((res) => {
 		dispatch({
 			type: UPDATE_REGISTER_TRAINEE,
 			payload: res.data,

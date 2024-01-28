@@ -33,37 +33,81 @@ export const logout = () => {
 	};
 };
 
-export const login = (credentials, navigation) => async (dispatch) => {
-	try {
-		dispatch(loginRequest());
+// export const login =
+// 	(credentials, navigation, navigationadmin) => async (dispatch) => {
+// 		try {
+// 			dispatch(loginRequest());
 
-		const endpoint =
-			credentials.role === 'trainer'
-				? '/api/trainers/login'
-				: '/api/users/login';
+// 			const endpoint =
+// 				credentials.role === 'trainer'
+// 					? '/api/trainers/login'
+// 					: '/api/users/login';
 
-		const response = await axios.post(endpoint, credentials);
-		const data = response.data;
-		console.log('🚀 ~ login ~ data:', data);
+// 			const response = await axios.post(endpoint, credentials);
+// 			const data = response.data;
+// 			console.log('🚀 ~ login ~ data:', data);
 
-		if (response.status === 200) {
-			dispatch(loginSuccess(data.trainer));
-			localStorage.setItem('token', data.token);
-			const storage = localStorage.setItem(
-				'user',
-				JSON.stringify(data.trainer)
-			);
-			navigation('/');
-			console.log('🚀 ~ login ~ storage:', storage);
-		} else if (response.status === 403) {
-			dispatch(adminNotApproved(data.error));
-		} else {
-			dispatch(loginFailure(data.error));
+// 			if (response.status === 200) {
+// 				credentials.role == 'trainer'?
+// 				(dispatch(loginSuccess(data.trainer))
+
+// 				localStorage.setItem('user', JSON.stringify(data.trainer))):((dispatch(loginSuccess(data.trainer))
+
+// 				localStorage.setItem('user', JSON.stringify(data.trainer))));
+
+// 					localStorage.setItem('token', data.token)
+// 				credentials.role == 'trainer'
+// 					? navigation('/')
+// 					: navigationadmin('/admin/app');
+// 			} else if (response.status === 403) {
+// 				dispatch(adminNotApproved(data.error));
+// 			} else {
+// 				dispatch(loginFailure(data.error));
+// 			}
+// 		} catch (error) {
+// 			dispatch(loginFailure('User Not approved'));
+// 		}
+// 	};
+
+export const login =
+	(credentials, navigation, navigationadmin) => async (dispatch) => {
+		try {
+			dispatch(loginRequest());
+
+			const endpoint =
+				credentials.role === 'trainer'
+					? '/api/trainers/login'
+					: '/api/users/login';
+
+			const response = await axios.post(endpoint, credentials);
+			const data = response.data;
+
+			console.log('🚀 ~ login ~ data:', data);
+			console.log('🚀 ~ role:', credentials.role);
+
+			if (response.status === 200) {
+				if (credentials.role === 'trainer') {
+					dispatch(loginSuccess(data.trainer));
+					localStorage.setItem('user', JSON.stringify(data.trainer));
+				} else {
+					dispatch(loginSuccess(data.user));
+					localStorage.setItem('user', JSON.stringify(data.user));
+				}
+
+				localStorage.setItem('token', data.token);
+
+				credentials.role === 'admin'
+					? navigation('/admin/app')
+					: navigation('/');
+			} else if (response.status === 403) {
+				dispatch(adminNotApproved(data.error));
+			} else {
+				dispatch(loginFailure(data.error));
+			}
+		} catch (error) {
+			dispatch(loginFailure('User Not approved'));
 		}
-	} catch (error) {
-		dispatch(loginFailure('User Not approved'));
-	}
-};
+	};
 
 // const setSession = (accessToken, user) => {
 // 	if (accessToken) {

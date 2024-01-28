@@ -32,12 +32,11 @@ const LoginAdmin = () => {
 			};
 
 			// Dispatch login action
-			await dispatch(login(credentials));
+			await dispatch(login(credentials, navigation));
 
 			// Check if the login was successful before navigating
-			if (!errorMessage) {
-				navigation('/admin/app');
-			}
+
+			// navigation('/admin/app');
 		},
 	});
 
