@@ -7,7 +7,7 @@ export const UPDATE_REGISTER_COACH = 'UPDATE_REGISTER_COACH';
 export const DELETE_REGISTER_COACH = 'DELETE_REGISTER_COACH';
 
 export const getAllCoach = () => (dispatch) => {
-	axios.get('/api/users/').then((res) => {
+	axios.get('api/trainers/all').then((res) => {
 		dispatch({
 			type: GET_REGISTER_COACH,
 			payload: res.data,
@@ -17,7 +17,7 @@ export const getAllCoach = () => (dispatch) => {
 
 export const registerCoach = (requestData) => (dispatch) => {
 	axios
-		.post('/api/users/register', requestData)
+		.post('api/trainers/register', requestData)
 		.then((res) => {
 			// Dispatch the success action with the received data
 			dispatch({
@@ -35,7 +35,7 @@ export const registerCoach = (requestData) => (dispatch) => {
 };
 
 export const updateCoach = (requestData) => (dispatch) => {
-	axios.put(`/api/users/${requestData.id}/`, requestData).then((res) => {
+	axios.put(`api/trainers/${requestData.id}/`, requestData).then((res) => {
 		dispatch({
 			type: UPDATE_REGISTER_COACH,
 			payload: res.data,
@@ -44,7 +44,7 @@ export const updateCoach = (requestData) => (dispatch) => {
 };
 
 export const deleteCoach = (coachRequestId) => (dispatch) => {
-	axios.delete(`/api/users/${coachRequestId}/`).then(() => {
+	axios.delete(`api/trainers/${coachRequestId}/`).then(() => {
 		dispatch({
 			type: DELETE_REGISTER_COACH,
 			payload: coachRequestId,

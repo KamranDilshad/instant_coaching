@@ -4,7 +4,7 @@ import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
-import { Ecommerce, Employees, Stacked, Customers, Line, Pie } from './pages';
+import { Ecommerce, Stacked, Line, Pie, Trainees, CoachesTable } from './pages';
 import '../App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
@@ -70,8 +70,8 @@ const Admin = () => {
 							<Route path='/' element={<Ecommerce />} />
 							<Route path='/revenue' element={<Ecommerce />} />
 
-							<Route path='/employees' element={<Employees />} />
-							<Route path='/customers' element={<Customers />} />
+							<Route path='/coaches' element={<CoachesTable />} />
+							<Route path='/trainees' element={<Trainees />} />
 
 							<Route path='/line' element={<Line />} />
 

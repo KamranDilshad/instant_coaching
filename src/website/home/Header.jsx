@@ -1,16 +1,21 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../assets/css/style.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/actions/AuthAction';
+import { Button } from 'react-bootstrap';
 
 const Header = () => {
 	const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
+	const user = useSelector((state) => state?.auth?.user);
+	console.log('🚀 ~ Header ~ user:', user);
 	console.log('🚀 ~ Header ~ isLoggedIn:', isLoggedIn);
 	const dispatch = useDispatch();
+	const navigation = useNavigate();
 
 	const handleLogout = () => {
 		dispatch(logout());
+		navigation('/login');
 	};
 
 	return (
@@ -93,11 +98,16 @@ const Header = () => {
 								<li className='dropdown'>
 									<a href='#'>
 										<img
-											src={user.picture}
-											alt='User'
+											src={user.image}
+											alt={`${user.firstName} ${user.lastName}`}
+											style={{
+												width: '50px',
+												height: '50px',
+												borderRadius: '50%',
+											}}
 											className='user-avatar'
 										/>
-										<span>{user.username}</span>{' '}
+										<span className='ps-2'>{user.firstName}</span>
 										<i className='bi bi-chevron-down'></i>
 									</a>
 									<ul>
@@ -105,7 +115,12 @@ const Header = () => {
 											<Link to='/profile'>View Profile</Link>
 										</li>
 										<li>
-											<button onClick={handleLogout}>Logout</button>
+											<button
+												className=' ms-2 mt-2 getstarted  scrollto'
+												onClick={handleLogout}
+											>
+												Logout
+											</button>
 										</li>
 									</ul>
 								</li>

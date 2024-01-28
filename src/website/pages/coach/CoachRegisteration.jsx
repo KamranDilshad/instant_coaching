@@ -22,6 +22,7 @@ const CoachRegisteration = () => {
 			category: '',
 			subCategory: '',
 			gender: 'male',
+			image: null,
 		},
 		validationSchema: Yup.object({
 			firstName: Yup.string().required('Required'),
@@ -36,22 +37,46 @@ const CoachRegisteration = () => {
 				.required('Required'),
 			category: Yup.string().required('Required'),
 			subCategory: Yup.string().required('Required'),
+			image: Yup.mixed().required('Required'),
 		}),
-		onSubmit: (values) => {
-			const requestData = {
-				firstName: values.firstName,
-				lastName: values.lastName,
-				password: values.password,
-				confirmPassword: values.confirmPassword,
-				email: values.email,
-				phone: values.phone,
-				category: values.category,
-				subCategory: values.subCategory,
-				gender: values.gender,
-			};
-			// Dispatch the action to post data to Redux
-			dispatch(registerCoach(requestData));
-			navigation('/login');
+		// onSubmit: (values) => {
+		// 	const requestData = {
+		// 		firstName: values.firstName,
+		// 		lastName: values.lastName,
+		// 		password: values.password,
+		// 		confirmPassword: values.confirmPassword,
+		// 		email: values.email,
+		// 		phone: values.phone,
+		// 		category: values.category,
+		// 		subCategory: values.subCategory,
+		// 		gender: values.gender,
+		// 		image: values.image,
+		// 	};
+		// 	// Dispatch the action to post data to Redux
+		// 	dispatch(registerCoach(requestData));
+		// 	navigation('/login');
+		// },
+		onSubmit: async (values) => {
+			const formData = new FormData();
+			formData.append('firstName', values.firstName);
+			formData.append('lastName', values.lastName);
+			formData.append('password', values.password);
+			formData.append('confirmPassword', values.confirmPassword);
+			formData.append('email', values.email);
+			formData.append('phone', values.phone);
+			formData.append('category', values.category);
+			formData.append('subCategory', values.subCategory);
+			formData.append('gender', values.gender);
+			formData.append('image', values.image);
+
+			try {
+				// Dispatch the action to post data to Redux using FormData
+				await dispatch(registerCoach(formData));
+				navigation('/login');
+			} catch (error) {
+				// Handle error
+				console.error('Error registering coach:', error);
+			}
 		},
 	});
 
@@ -190,12 +215,15 @@ const CoachRegisteration = () => {
 													type='text'
 													className='form-control'
 													placeholder='Sub_Category *'
-													name='category'
-													value={formik.values.category}
+													name='subCategory'
+													value={formik.values.subCategory}
 													onChange={formik.handleChange}
 												/>
-												{formik.touched.lastName && formik.errors.category ? (
-													<div className='error'>{formik.errors.category}</div>
+												{formik.touched.lastName &&
+												formik.errors.subCategory ? (
+													<div className='error'>
+														{formik.errors.subCategory}
+													</div>
 												) : null}
 											</div>
 										</div>
@@ -227,6 +255,27 @@ const CoachRegisteration = () => {
 														/>
 														<span>Female </span>
 													</label>
+												</div>
+												<div className='col-md-6'>
+													<div className='form-group mb-3'>
+														<label htmlFor='image'>Profile Image *</label>
+														<input
+															type='file'
+															id='image'
+															name='image'
+															accept='image/*'
+															onChange={(event) => {
+																formik.setFieldValue(
+																	'image',
+																	event.currentTarget.files[0]
+																);
+															}}
+															onBlur={formik.handleBlur}
+														/>
+														{formik.touched.image && formik.errors.image ? (
+															<div className='error'>{formik.errors.image}</div>
+														) : null}
+													</div>
 												</div>
 											</div>
 											<div className='col-md-6 '>

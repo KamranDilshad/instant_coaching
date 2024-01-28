@@ -10,7 +10,7 @@ const initialState = {
 	isAuthenticated: false,
 	isInitialised: false,
 	isLoggedIn: false,
-	user: null,
+	user: [],
 	loading: false,
 	error: null,
 };

@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import '../assets/css/login.css';
 import log from '../assets/img/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../redux/actions/AuthAction';
 
 const Login = () => {
@@ -13,6 +13,7 @@ const Login = () => {
 	// const authState = useSelector((state) => state.auth);
 	const errorMessage = useSelector((state) => state.auth.error);
 	console.log('🚀 ~ Login ~ errorMessage:', errorMessage);
+	const navigation = useNavigate();
 
 	const formik = useFormik({
 		initialValues: {
@@ -31,6 +32,7 @@ const Login = () => {
 				role: values.role,
 			};
 			dispatch(login(credentials));
+			navigation('/');
 		},
 	});
 

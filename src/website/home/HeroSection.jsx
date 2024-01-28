@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
 	return (
@@ -17,9 +18,9 @@ const HeroSection = () => {
 								enhanced your skills
 							</h2>
 							<div className='d-flex justify-content-center justify-content-lg-start'>
-								<a href='#about' className='btn-get-started scrollto'>
-									Get Started
-								</a>
+								<Link to={'/login'}>
+									<span className='btn-get-started scrollto'>Get Started</span>
+								</Link>
 							</div>
 						</div>
 						<div

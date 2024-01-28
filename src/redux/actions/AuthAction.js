@@ -25,9 +25,13 @@ export const loginFailure = (error) => ({
 	payload: error,
 });
 
-export const logout = () => ({
-	type: LOGOUT,
-});
+export const logout = () => {
+	localStorage.removeItem('user');
+
+	return {
+		type: LOGOUT,
+	};
+};
 
 export const login = (credentials) => async (dispatch) => {
 	try {
@@ -40,11 +44,16 @@ export const login = (credentials) => async (dispatch) => {
 
 		const response = await axios.post(endpoint, credentials);
 		const data = response.data;
+		console.log('🚀 ~ login ~ data:', data);
 
 		if (response.status === 200) {
-			dispatch(loginSuccess(data.user));
+			dispatch(loginSuccess(data.trainer));
 			localStorage.setItem('token', data.token);
-			localStorage.setItem('user', JSON.stringify(data.user));
+			const storage = localStorage.setItem(
+				'user',
+				JSON.stringify(data.trainer)
+			);
+			console.log('🚀 ~ login ~ storage:', storage);
 		} else if (response.status === 403) {
 			dispatch(adminNotApproved(data.error));
 		} else {
@@ -55,14 +64,14 @@ export const login = (credentials) => async (dispatch) => {
 	}
 };
 
-const setSession = (accessToken, user) => {
-	if (accessToken) {
-		localStorage.setItem('accessToken', accessToken);
-		localStorage.setItem('userProfile', JSON.stringify(user));
-		axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-	} else {
-		localStorage.removeItem('accessToken');
-		localStorage.removeItem('userProfile');
-		delete axios.defaults.headers.common.Authorization;
-	}
-};
+// const setSession = (accessToken, user) => {
+// 	if (accessToken) {
+// 		localStorage.setItem('accessToken', accessToken);
+// 		localStorage.setItem('userProfile', JSON.stringify(user));
+// 		axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+// 	} else {
+// 		localStorage.removeItem('accessToken');
+// 		localStorage.removeItem('userProfile');
+// 		delete axios.defaults.headers.common.Authorization;
+// 	}
+// };
