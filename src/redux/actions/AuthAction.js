@@ -33,7 +33,7 @@ export const logout = () => {
 	};
 };
 
-export const login = (credentials) => async (dispatch) => {
+export const login = (credentials, navigation) => async (dispatch) => {
 	try {
 		dispatch(loginRequest());
 
@@ -53,6 +53,7 @@ export const login = (credentials) => async (dispatch) => {
 				'user',
 				JSON.stringify(data.trainer)
 			);
+			navigation('/');
 			console.log('🚀 ~ login ~ storage:', storage);
 		} else if (response.status === 403) {
 			dispatch(adminNotApproved(data.error));

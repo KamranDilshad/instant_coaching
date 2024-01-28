@@ -44,7 +44,6 @@
 
 // export default Routing;
 
-// Routing.js
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './website/pages/Login';
@@ -76,8 +75,8 @@ function Routing() {
 				<Route path='/aboutus' element={<AboutUs />} />
 				<Route path='/coachregister' element={<CoachRegisteration />} />
 				<Route path='/traineeregister' element={<TraineeRegister />} />
-				{/* Use ProtectedRoute for the following routes */}
-				{/* <Route
+
+				<Route
 					path='/profile'
 					element={
 						<ProtectedRoute
@@ -85,15 +84,7 @@ function Routing() {
 							isAuthenticated={isAuthenticated}
 						/>
 					}
-				/> */}
-				{/* 				
-				<ProtectedRoute
-					path='/profile'
-					element={<ProfileView />} // Replace 'Home' with your actual component for the home page
-					isAuthenticated={isAuthenticated}
-					redirectTo='/login'
-				/> */}
-
+				/>
 				<Route
 					path='/cricketservices'
 					element={

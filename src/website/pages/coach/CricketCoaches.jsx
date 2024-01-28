@@ -1,32 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BackButton from '../Button';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const CricketCoaches = () => {
-	// Sample array of cricket coaches
-	const cricketCoachesData = [
-		{
-			name: 'Zaheer Ansari',
-			role: 'Bowling Coach',
-			image: '../assets/img/team/zaheer.jpg',
-		},
-		{
-			name: 'Mujahid Awaise',
-			role: 'Batting Coach',
-			image: '../assets/img/team/mujahid.jpg',
-		},
-		{
-			name: 'Shoiab Riaz',
-			role: 'Batting Coach',
-			image: '../assets/img/team/shoiab.jpg',
-		},
-		{
-			name: 'Amanda Jepson',
-			role: 'Bowling Coach',
-			image: '../assets/img/team/team-4.jpg',
-		},
-	];
+	const cricketCoachesData = useSelector(
+		(state) => state?.coachRegister?.coachRegister
+	);
+	useEffect(() => {
+		console.log(
+			'🚀 ~ CricketCoaches ~ cricketCoachesData:',
+			cricketCoachesData
+		);
+
+		dispatch(getAllCoach());
+	}, [dispatch]);
 
 	return (
 		<>
@@ -56,7 +45,7 @@ const CricketCoaches = () => {
 										<img src={coach.image} className='img-fluid' alt='' />
 									</div>
 									<div className='member-info'>
-										<h4>{coach.name}</h4>
+										<h4>{coach.firstName}</h4>
 										<span>{coach.role}</span>
 										<p> {/* Add additional coach information here */}</p>
 										<div className='social'>

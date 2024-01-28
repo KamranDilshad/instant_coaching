@@ -35,7 +35,7 @@ export const registerCoach = (requestData) => (dispatch) => {
 };
 
 export const updateCoach = (requestData) => (dispatch) => {
-	axios.put(`api/trainers/${requestData.id}/`, requestData).then((res) => {
+	axios.patch(`api/trainers/${requestData._id}`, requestData).then((res) => {
 		dispatch({
 			type: UPDATE_REGISTER_COACH,
 			payload: res.data,
@@ -44,7 +44,7 @@ export const updateCoach = (requestData) => (dispatch) => {
 };
 
 export const deleteCoach = (coachRequestId) => (dispatch) => {
-	axios.delete(`api/trainers/${coachRequestId}/`).then(() => {
+	axios.delete(`api/trainers/${coachRequestId}`).then(() => {
 		dispatch({
 			type: DELETE_REGISTER_COACH,
 			payload: coachRequestId,

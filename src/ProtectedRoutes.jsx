@@ -6,6 +6,7 @@ const ProtectedRoute = ({
 	isAuthenticated,
 	redirectTo = '/login',
 }) => {
+	console.log('🚀 ~ element:', element);
 	return isAuthenticated ? (
 		<Route element={element} />
 	) : (

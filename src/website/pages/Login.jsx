@@ -31,8 +31,8 @@ const Login = () => {
 				password: values.password,
 				role: values.role,
 			};
-			dispatch(login(credentials));
-			navigation('/');
+			dispatch(login(credentials, navigation));
+			// navigation('/');
 		},
 	});
 
