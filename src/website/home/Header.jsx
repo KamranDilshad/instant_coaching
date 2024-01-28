@@ -98,7 +98,7 @@ const Header = () => {
 								<li className='dropdown'>
 									<a href='#'>
 										<img
-											src={user.image}
+											src={user?.image}
 											alt={`${user.firstName} ${user.lastName}`}
 											style={{
 												width: '50px',
