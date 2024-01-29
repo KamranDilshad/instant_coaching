@@ -48,7 +48,7 @@ const traineeRegisterReducer = (state = initialState, action) => {
 
 		case DELETE_REGISTER_TRAINEE:
 			const deleteTraineeRegister = state.traineeRegister.filter(
-				(item) => item.id !== action.payload
+				(item) => item._id !== action.payload
 			);
 
 			return {

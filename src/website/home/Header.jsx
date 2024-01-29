@@ -116,6 +116,12 @@ const Header = () => {
 										<li>
 											<Link to='/profile'>View Profile</Link>
 										</li>
+										{user.role == 'trainer' ? (
+											<li>
+												<Link to='/lunchprogram'>Lunch Program</Link>
+											</li>
+										) : null}
+
 										<li>
 											<button
 												className=' ms-2 mt-2 getstarted  scrollto'

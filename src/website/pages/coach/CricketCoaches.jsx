@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import BackButton from '../Button';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCoach } from '../../../redux/actions/CoachAction';
 
 const CricketCoaches = () => {
 	const cricketCoachesData = useSelector(
 		(state) => state?.coachRegister?.coachRegister
 	);
+
+	const dispatch = useDispatch();
 	useEffect(() => {
 		console.log(
 			'🚀 ~ CricketCoaches ~ cricketCoachesData:',
@@ -41,12 +44,21 @@ const CricketCoaches = () => {
 								data-aos-delay={100 * (index + 1)}
 							>
 								<div className='member d-flex align-items-start '>
-									<div className='pic'>
-										<img src={coach.image} className='img-fluid' alt='' />
+									<div className=''>
+										<img
+											src={coach.image}
+											style={{
+												width: '150px',
+												height: '150px',
+												borderRadius: '50%',
+											}}
+											alt=''
+										/>
 									</div>
 									<div className='member-info'>
 										<h4>{coach.firstName}</h4>
 										<span>{coach.role}</span>
+										<span>{coach.phone}</span>
 										<p> {/* Add additional coach information here */}</p>
 										<div className='social'>
 											<a href=''>
@@ -61,23 +73,13 @@ const CricketCoaches = () => {
 											<a href=''>
 												<i className='ri-linkedin-box-fill'></i>
 											</a>
-											{/* <span className='ms-3'>
-												<Link to={''}>
-													<Button className='ms-3 bg-primary  '>Book</Button>
-												</Link>
-											</span>
-											<span className='ms-4'>
-												<Link to={'/cricketservices'}>
-													<Button className='ms-5 bg-primary'>View</Button>
-												</Link>
-											</span> */}
 										</div>
 										<div className='mt-3 '>
 											<Link to={'/payment'}>
 												<Button className=' bg-primary  '>Book</Button>
 											</Link>
 
-											<Link to={'/cricketservices'}>
+											<Link to={`/cricketservices/${coach._id}`}>
 												<Button className='ms-3 bg-primary'>View</Button>
 											</Link>
 										</div>

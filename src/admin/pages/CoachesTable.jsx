@@ -56,7 +56,7 @@ const CoachesTable = () => {
 
 	return (
 		<div className='container mx-auto p-8 '>
-			<h1 className='text-2xl font-bold mb-4  dark:text-white '>Trainees</h1>
+			<h1 className='text-2xl font-bold mb-4  dark:text-white '>Coaches</h1>
 
 			<div className='bg-white p-6 rounded-lg shadow-lg  '>
 				<div className='card'>

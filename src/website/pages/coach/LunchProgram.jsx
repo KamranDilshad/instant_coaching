@@ -5,7 +5,7 @@ import BackButton from '../Button';
 import FooterSection from '../../home/FooterSection';
 import { useDispatch } from 'react-redux';
 import { addLunchProgram } from '../../../redux/actions/LunchProgramAction';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LunchProgram = () => {
 	const dispatch = useDispatch();
@@ -87,9 +87,11 @@ const LunchProgram = () => {
 							<Button type='submit' variant='primary'>
 								Add Lunch Program
 							</Button>
-							<Button className='ms-4' variant='primary'>
-								View Program
-							</Button>
+							<Link to={'/viewprogram'}>
+								<Button className='ms-4' variant='primary'>
+									View Program
+								</Button>
+							</Link>
 						</Form>
 					</Card.Body>
 				</Card>

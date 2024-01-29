@@ -33,7 +33,7 @@ export const addLunchProgram = (requestData) => (dispatch) => {
 };
 
 export const updateLunchProgram = (requestData) => (dispatch) => {
-	axios.put(`/api/programs/${requestData.id}/`, requestData).then((res) => {
+	axios.put(`/api/programs/${requestData._id}`, requestData).then((res) => {
 		dispatch({
 			type: UPDATE_LUNCH_PROGRAM,
 			payload: res.data,
@@ -42,7 +42,7 @@ export const updateLunchProgram = (requestData) => (dispatch) => {
 };
 
 export const deleteLunchProgram = (lunchProgramId) => (dispatch) => {
-	axios.delete(`/api/programs/${lunchProgramId}/`).then(() => {
+	axios.delete(`/api/programs/${lunchProgramId}`).then(() => {
 		dispatch({
 			type: DELETE_LUNCH_PROGRAM,
 			payload: lunchProgramId,

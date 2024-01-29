@@ -9,7 +9,15 @@ const adminApproveReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case APPROVE_USER:
 			const approveUser = state.approveUser.map((updateRequest) => {
-				if (updateRequest.id === action.payload.id) {
+				if (updateRequest._id === action.payload.id) {
+					console.log(
+						'🚀 ~ approveUser ~ (updateRequest._id :',
+						updateRequest._id
+					);
+					console.log(
+						'🚀 ~ approveUser ~ action.payload.id:',
+						action.payload.id
+					);
 					return action.payload;
 				}
 				return updateRequest;

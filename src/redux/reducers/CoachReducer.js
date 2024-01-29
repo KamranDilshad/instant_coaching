@@ -34,7 +34,7 @@ const coachRegisterReducer = (state = initialState, action) => {
 
 		case UPDATE_REGISTER_COACH:
 			const updatedcoachRegister = state.coachRegister.map((updateRequest) => {
-				if (updateRequest.id === action.payload.id) {
+				if (updateRequest._id === action.payload.id) {
 					return action.payload;
 				}
 				return updateRequest;
@@ -46,8 +46,8 @@ const coachRegisterReducer = (state = initialState, action) => {
 			};
 
 		case DELETE_REGISTER_COACH:
-			const deletecoachRegister = state.data.filter(
-				(item) => item.id !== action.payload
+			const deletecoachRegister = state.coachRegister.filter(
+				(item) => item._id !== action.payload
 			);
 
 			return {

@@ -32,7 +32,7 @@ const lunchProgramReducer = (state = initialState, action) => {
 			};
 		case UPDATE_LUNCH_PROGRAM:
 			const updatedPrograms = state.lunchPrograms.map((program) =>
-				program.id === action.payload.id ? action.payload : program
+				program._id === action.payload._id ? action.payload : program
 			);
 			return {
 				...state,
@@ -41,7 +41,7 @@ const lunchProgramReducer = (state = initialState, action) => {
 			};
 		case DELETE_LUNCH_PROGRAM:
 			const filteredPrograms = state.lunchPrograms.filter(
-				(program) => program.id !== action.payload
+				(program) => program._id !== action.payload
 			);
 			return {
 				...state,

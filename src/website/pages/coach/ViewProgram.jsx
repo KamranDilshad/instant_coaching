@@ -96,19 +96,24 @@ const ProgramTableView = () => {
 											<td>
 												<Dropdown>
 													<Dropdown.Toggle
-														variant='success'
-														id='dropdown-basic'
+														style={{
+															background: '#07B3F5',
+															border: 'none',
+															outline: 'none',
+															boxShadow: 'none',
+															padding: '0.5rem 1rem',
+														}}
 													>
 														Actions
 													</Dropdown.Toggle>
 													<Dropdown.Menu>
 														<Dropdown.Item
-															onClick={() => handleEdit(program.id)}
+															onClick={() => handleEdit(program._id)}
 														>
 															Edit
 														</Dropdown.Item>
 														<Dropdown.Item
-															onClick={() => handleDelete(program.id)}
+															onClick={() => handleDelete(program._id)}
 														>
 															Delete
 														</Dropdown.Item>

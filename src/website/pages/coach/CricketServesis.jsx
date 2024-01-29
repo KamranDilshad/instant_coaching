@@ -1,32 +1,24 @@
 import React from 'react';
 import './curosol.css';
-import Button from '../Button';
+
+import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 const CricketServesis = () => {
-	const testimonialsData = [
-		{
-			image: '../assets/img/team/zaheer.jpg',
-			text: 'The cricket coaching services have been transformative, taking me from a novice to a skilled professional. Personalized training plans, one-on-one coaching, and a focus on mental aspects have significantly enhanced my game. The comprehensive approach and regular feedback sessions have been invaluable.',
-			name: 'Zaheer Ansari',
-			role: 'Cricketer',
-		},
-		{
-			image: '../assets/img/team/mujahid.jpg',
-			text: 'This coaching program has substantially improved my cricketing skills, offering effective techniques and emphasizing real-time decision-making. The holistic approach, including match simulations, has not only elevated my game but also instilled discipline and sportsmanship. Highly recommended for those seeking to enhance their cricket abilities.',
-			name: 'Mujahid Awaise',
-			role: 'Cricketer',
-		},
-		{
-			image: '../assets/img/team/shoiab.jpg',
-			text: 'My journey with the cricket coaching services has been transformative, providing a solid foundation in the game. The structured curriculum, coupled with cutting-edge training techniques, has shaped me into a skilled and strategic player. Beyond technical skills, the emphasis on teamwork and resilience has been pivotal in my growth as a cricketer.',
-			name: 'Shoiab Riaz',
-			role: 'Cricketer',
-		},
-	];
+	const { id } = useParams();
+	console.log('🚀 ~ CricketServesis ~ _id:', id);
+	const cricketCoachesData = useSelector(
+		(state) => state?.coachRegister?.coachRegister
+	);
+
+	console.log('🚀 ~ CricketServesis ~ cricketCoachesData:', cricketCoachesData);
+
+	const existCoach = cricketCoachesData.filter((f) => f._id == id);
+	console.log('🚀 ~ CricketServesis ~ existCoach:', existCoach);
 
 	return (
 		<>
-			<Button />
 			<section id='about' className='about'>
 				<div className='container' data-aos='fade-up'>
 					<div className='section-title'>
@@ -63,48 +55,37 @@ const CricketServesis = () => {
 
 			<h2>Testimonials</h2>
 			<div id='myCarousel' className='carousel slide' data-ride='carousel'>
-				<ol className='carousel-indicators'>
-					{testimonialsData.map((_, index) => (
-						<li
-							key={index}
-							data-target='#myCarousel'
-							data-slide-to={index}
-							className={index === 0 ? 'active' : ''}
-						></li>
-					))}
-				</ol>
-
 				<div className='carousel-inner'>
-					{testimonialsData.map((testimonial, index) => (
-						<div
-							key={index}
-							className={`carousel-item ${index === 0 ? 'active' : ''}`}
-						>
+					{existCoach.map((testimonial, index) => (
+						<div key={index}>
 							<div className='img-box'>
 								<img src={testimonial.image} alt='' />
 							</div>
-							<p className='testimonial'>{testimonial.text}</p>
+							{/* <p className='testimonial'>{testimonial.text}</p> */}
 							<p className='overview'>
-								<b>{testimonial.name}</b> {testimonial.role}
+								<b>{`${testimonial.firstName}  ${testimonial.lastName}`}</b>
+								<b>{testimonial.role}</b>
+								<b>{testimonial.phone}</b>
+								<b>{testimonial.email}</b>
+								<b>{testimonial.category}</b>
+								<b>{testimonial.subCategory}</b>
 							</p>
 						</div>
 					))}
+					<Link to={'/cricketcoach'}>
+						<button type='submit' className='btn bg-primary getstarted scroll'>
+							Cancel
+						</button>
+					</Link>
+					<Link to={'/payment'}>
+						<button
+							type='submit'
+							className='btn bg-primary getstarted scroll ms-2'
+						>
+							Book
+						</button>
+					</Link>
 				</div>
-
-				<a
-					className='carousel-control-prev'
-					href='#myCarousel'
-					data-slide='prev'
-				>
-					<i className='fa fa-angle-left'></i>
-				</a>
-				<a
-					className='carousel-control-next'
-					href='#myCarousel'
-					data-slide='next'
-				>
-					<i className='fa fa-angle-right'></i>
-				</a>
 			</div>
 		</>
 	);
