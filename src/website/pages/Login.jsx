@@ -10,9 +10,7 @@ import { login } from '../../redux/actions/AuthAction';
 
 const Login = () => {
 	const dispatch = useDispatch();
-	// const authState = useSelector((state) => state.auth);
-	const errorMessage = useSelector((state) => state.auth.error);
-	console.log('🚀 ~ Login ~ errorMessage:', errorMessage);
+
 	const navigation = useNavigate();
 
 	const formik = useFormik({
@@ -32,7 +30,6 @@ const Login = () => {
 				role: values.role,
 			};
 			dispatch(login(credentials, navigation));
-			// navigation('/');
 		},
 	});
 
@@ -67,14 +64,6 @@ const Login = () => {
 
 											<form onSubmit={formik.handleSubmit}>
 												<p>Please login to your account</p>
-												{errorMessage && (
-													<p
-														className='text-center pt-2  '
-														style={{ color: 'red' }}
-													>
-														Error: {errorMessage}
-													</p>
-												)}
 
 												<div className='form-outline mb-3 mt-2'>
 													<label
@@ -148,16 +137,13 @@ const Login = () => {
 													</label>
 												</div>
 
-												<div className='text-center pt-1 mb-2 '>
+												<div className='text-end pt-1 mb-2 '>
 													<button
 														type='submit'
 														className='btn btn-primary btn-block fa-lg gradient-custom-2 mb-3'
 													>
 														Login
 													</button>
-													<span className='text-muted px-2'>
-														Forgot password?
-													</span>
 												</div>
 
 												<div className='d-flex justify-content-end '>

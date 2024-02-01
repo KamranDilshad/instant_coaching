@@ -16,6 +16,7 @@ import StripePaymentForm from './website/pages/coach/PaymentCard';
 import LoginAdmin from './admin/LoginAdmin';
 import ProtectedRoute from './ProtectedRoutes';
 import { useSelector } from 'react-redux';
+import UpdateProgram from './website/pages/coach/UpdateProgram';
 
 function Routing() {
 	const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
@@ -40,7 +41,7 @@ function Routing() {
 					}
 				/>
 				<Route
-					path='/cricketservices'
+					path='/cricketservices/:id'
 					element={
 						<ProtectedRoute
 							element={<CricketServices />}
@@ -85,7 +86,16 @@ function Routing() {
 					}
 				/>
 				<Route
-					path='/payment'
+					path='/updateprogram/:id'
+					element={
+						<ProtectedRoute
+							element={<UpdateProgram />}
+							isAuthenticated={isAuthenticated}
+						/>
+					}
+				/>
+				<Route
+					path='/payment/:programId/:trainerId'
 					element={
 						<ProtectedRoute
 							element={<StripePaymentForm />}

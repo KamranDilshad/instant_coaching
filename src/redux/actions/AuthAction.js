@@ -46,7 +46,6 @@ export const login = (credentials, navigation) => async (dispatch) => {
 
 		const response = await axios.post(endpoint, credentials);
 		const data = response.data;
-		console.log('🚀 ~ login ~ data:', data);
 
 		if (response?.status === 200) {
 			const userKey = credentials.role === 'trainer' ? 'trainer' : 'user';
@@ -60,7 +59,7 @@ export const login = (credentials, navigation) => async (dispatch) => {
 				? navigation('/admin/app')
 				: navigation('/');
 
-			console.log('🚀 ~ login ~ storage:', localStorage);
+			showSuccessAlert('Success', 'Login successful!');
 		} else if (response?.status === 403) {
 			dispatch(adminNotApproved(data.error));
 			showErrorAlert('Access Denied', data.error);
@@ -74,6 +73,15 @@ export const login = (credentials, navigation) => async (dispatch) => {
 		dispatch(loginFailure(errorMessage));
 		showErrorAlert('Login Failed', errorMessage);
 	}
+};
+
+const showSuccessAlert = (title, text) => {
+	Swal.fire({
+		title: title,
+		text: text,
+		icon: 'success',
+		confirmButtonText: 'OK',
+	});
 };
 
 const showErrorAlert = (title, text) => {

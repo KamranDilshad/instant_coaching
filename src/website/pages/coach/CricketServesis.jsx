@@ -4,6 +4,7 @@ import './curosol.css';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import CricketCoaches from './CricketCoaches';
 
 const CricketServesis = () => {
 	const { id } = useParams();
@@ -77,16 +78,9 @@ const CricketServesis = () => {
 							Cancel
 						</button>
 					</Link>
-					<Link to={'/payment'}>
-						<button
-							type='submit'
-							className='btn bg-primary getstarted scroll ms-2'
-						>
-							Book
-						</button>
-					</Link>
 				</div>
 			</div>
+			<CricketCoaches />
 		</>
 	);
 };

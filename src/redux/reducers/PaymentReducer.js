@@ -1,7 +1,4 @@
-import {
-	APPROVE_USER_SUCCESS,
-	APPROVE_USER_FAILURE,
-} from '../actions/AdminAction';
+import { PAYMENT_FAILURE, PAYMENT_SUCCESS } from '../actions/PaymentAction';
 
 const initialState = {
 	approveUser: [],
@@ -9,9 +6,9 @@ const initialState = {
 	error: null,
 };
 
-const adminApproveReducer = (state = initialState, action) => {
+const paymentReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case APPROVE_USER_SUCCESS:
+		case PAYMENT_SUCCESS:
 			return {
 				...state,
 				approveUser: state.approveUser.map((updateRequest) => {
@@ -23,7 +20,7 @@ const adminApproveReducer = (state = initialState, action) => {
 				loading: false,
 				error: null,
 			};
-		case APPROVE_USER_FAILURE:
+		case PAYMENT_FAILURE:
 			return {
 				...state,
 				loading: false,
@@ -34,4 +31,4 @@ const adminApproveReducer = (state = initialState, action) => {
 	}
 };
 
-export default adminApproveReducer;
+export default paymentReducer;

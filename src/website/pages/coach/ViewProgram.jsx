@@ -16,7 +16,7 @@ import {
 	deleteLunchProgram,
 	getAllLunchPrograms,
 } from '../../../redux/actions/LunchProgramAction';
-// import { fetchPrograms, deleteProgram } from '../redux/actions/programActions';
+import { Link } from 'react-router-dom';
 
 const ProgramTableView = () => {
 	const dispatch = useDispatch();
@@ -32,11 +32,6 @@ const ProgramTableView = () => {
 	const handleDelete = (programId) => {
 		// Handle delete logic here
 		dispatch(deleteLunchProgram(programId));
-	};
-
-	const handleEdit = (programId) => {
-		// Handle edit logic here
-		console.log(`Editing program with ID ${programId}`);
 	};
 
 	const renderTooltip = (props) => (
@@ -107,11 +102,22 @@ const ProgramTableView = () => {
 														Actions
 													</Dropdown.Toggle>
 													<Dropdown.Menu>
-														<Dropdown.Item
-															onClick={() => handleEdit(program._id)}
-														>
-															Edit
+														<Dropdown.Item>
+															<Link to={`/updateprogram/${program._id}`}>
+																<Button
+																	style={{
+																		background: '#07B3F5',
+																		border: 'none',
+																		outline: 'none',
+																		boxShadow: 'none',
+																		padding: '0.5rem 1rem',
+																	}}
+																>
+																	Edit
+																</Button>
+															</Link>
 														</Dropdown.Item>
+
 														<Dropdown.Item
 															onClick={() => handleDelete(program._id)}
 														>

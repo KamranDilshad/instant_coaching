@@ -3,7 +3,10 @@ import {
 	GET_REGISTER_COACH,
 	REGISTER_COACH_FAILURE,
 	REGISTER_COACH_SUCCESS,
-	UPDATE_REGISTER_COACH,
+	UPDATE_REGISTER_COACH_SUCCESS,
+	UPDATE_REGISTER_COACH_FAILURE,
+	DELETE_REGISTER_COACH_SUCCESS,
+	DELETE_REGISTER_COACH_FAILURE,
 } from '../actions/CoachAction';
 
 const initialState = {
@@ -18,12 +21,15 @@ const coachRegisterReducer = (state = initialState, action) => {
 			return {
 				...state,
 				coachRegister: [...action.payload],
+				loading: false,
+				error: null,
 			};
 		case REGISTER_COACH_SUCCESS:
 			return {
 				...state,
-
 				coachRegister: [...state.coachRegister, action.payload],
+				loading: false,
+				error: null,
 			};
 		case REGISTER_COACH_FAILURE:
 			return {
@@ -31,8 +37,7 @@ const coachRegisterReducer = (state = initialState, action) => {
 				loading: false,
 				error: action.payload,
 			};
-
-		case UPDATE_REGISTER_COACH:
+		case UPDATE_REGISTER_COACH_SUCCESS:
 			const updatedcoachRegister = state.coachRegister.map((updateRequest) => {
 				if (updateRequest._id === action.payload.id) {
 					return action.payload;
@@ -43,9 +48,16 @@ const coachRegisterReducer = (state = initialState, action) => {
 			return {
 				...state,
 				coachRegister: updatedcoachRegister,
+				loading: false,
+				error: null,
 			};
-
-		case DELETE_REGISTER_COACH:
+		case UPDATE_REGISTER_COACH_FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: action.payload,
+			};
+		case DELETE_REGISTER_COACH_SUCCESS:
 			const deletecoachRegister = state.coachRegister.filter(
 				(item) => item._id !== action.payload
 			);
@@ -53,8 +65,15 @@ const coachRegisterReducer = (state = initialState, action) => {
 			return {
 				...state,
 				coachRegister: deletecoachRegister,
+				loading: false,
+				error: null,
 			};
-
+		case DELETE_REGISTER_COACH_FAILURE:
+			return {
+				...state,
+				loading: false,
+				error: action.payload,
+			};
 		default:
 			return state;
 	}

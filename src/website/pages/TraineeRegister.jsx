@@ -32,9 +32,9 @@ const TraineeRegister = () => {
 				password: values.password,
 				confirmPassword: values.confirmPassword,
 			};
-			// Dispatch the action to post data to Redux
-			dispatch(registerTrainee(requestData));
-			navigation('/login');
+
+			dispatch(registerTrainee(requestData, navigation));
+			// navigation('/login');
 		},
 	});
 

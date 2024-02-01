@@ -2,16 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/actions/AuthAction';
+import logo from '../website/assets/img/logo.png';
 
 const LoginAdmin = () => {
 	const dispatch = useDispatch();
 	const navigation = useNavigate();
-	// const authState = useSelector((state) => state.auth);
-	const errorMessage = useSelector((state) => state.auth.error);
-	console.log('🚀 ~ Login ~ errorMessage:', errorMessage);
-
 	const formik = useFormik({
 		initialValues: {
 			email: '',
@@ -27,13 +24,7 @@ const LoginAdmin = () => {
 				password: values.password,
 				role: 'admin',
 			};
-
-			// Dispatch login action
 			await dispatch(login(credentials, navigation));
-
-			// Check if the login was successful before navigating
-
-			// navigation('/admin/app');
 		},
 	});
 
@@ -56,7 +47,7 @@ const LoginAdmin = () => {
 												</p>
 												<div class='text-center '>
 													<img
-														// src={log}
+														src={logo}
 														class='img-fluid rounded mx-auto d-block'
 														alt='login image'
 													/>
@@ -68,14 +59,6 @@ const LoginAdmin = () => {
 
 											<form onSubmit={formik.handleSubmit}>
 												<p>Please login to your account</p>
-												{errorMessage && (
-													<p
-														className='text-center pt-2  '
-														style={{ color: 'red' }}
-													>
-														Error: {errorMessage}
-													</p>
-												)}
 
 												<div className='form-outline mb-3 mt-2'>
 													<label
@@ -120,61 +103,14 @@ const LoginAdmin = () => {
 														</div>
 													) : null}
 												</div>
-												{/* 
-												<div className='form-outline mb-2'>
-													<label className='radio'>
-														<input
-															type='radio'
-															name='role'
-															value='trainee'
-															checked={formik.values.role === 'trainee'}
-															onChange={() =>
-																formik.setFieldValue('role', 'trainee')
-															}
-														/>
-														<span> Trainee </span>
-													</label>
 
-													<label className='radio px-3'>
-														<input
-															type='radio'
-															name='role'
-															value='trainer'
-															checked={formik.values.role === 'trainer'}
-															onChange={() =>
-																formik.setFieldValue('role', 'trainer')
-															}
-														/>
-														<span> Coach </span>
-													</label>
-												</div> */}
-
-												<div className='text-center pt-1 mb-2 '>
+												<div className='text-end pt-1 mb-2 '>
 													<button
 														type='submit'
 														className='btn btn-primary btn-block fa-lg gradient-custom-2 mb-3'
 													>
 														Login
 													</button>
-													<span className='text-muted px-2'>
-														Forgot password?
-													</span>
-												</div>
-
-												<div className='d-flex justify-content-end '>
-													<p className='mb-0 me-2 pt-2'>
-														Don't have an account?
-													</p>
-													<Link to={'/coachregister'}>
-														<span className='btn btn-outline-primary btn-custom'>
-															Coach
-														</span>
-													</Link>
-													<Link to={'/traineeregister'}>
-														<span className='btn btn-outline-primary btn-custom ms-2'>
-															Trainee
-														</span>
-													</Link>
 												</div>
 											</form>
 										</div>

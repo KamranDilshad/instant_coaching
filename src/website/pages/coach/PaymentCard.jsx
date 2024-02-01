@@ -1,33 +1,40 @@
 import React, { useState } from 'react';
 import FooterSection from '../../home/FooterSection';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { payPayment } from '../../../redux/actions/PaymentAction';
 
 const PaymentForm = () => {
-	const [cardNumber, setCardNumber] = useState('');
-	const [expiryDate, setExpiryDate] = useState('');
-	const [cvc, setCvc] = useState('');
+	const { programId, trainerId } = useParams();
+	console.log('🚀 ~ PaymentForm ~ trainerId:', trainerId);
+	console.log('🚀 ~ PaymentForm ~ programId:', programId);
+	// const [cardNumber, setCardNumber] = useState('');
+	// const [expiryDate, setExpiryDate] = useState('');
+	// const [cvc, setCvc] = useState('');
+	const [amount, setAmount] = useState('');
+	const dispatch = useDispatch();
 
-	const handleCardNumberChange = (e) => {
-		setCardNumber(e.target.value);
-	};
+	// const handleCardNumberChange = (e) => {
+	// 	setCardNumber(e.target.value);
+	// };
 
-	const handleExpiryDateChange = (e) => {
-		setExpiryDate(e.target.value);
-	};
+	// const handleExpiryDateChange = (e) => {
+	// 	setExpiryDate(e.target.value);
+	// };
 
-	const handleCvcChange = (e) => {
-		setCvc(e.target.value);
+	const handleSetAmountChange = (e) => {
+		setAmount(e.target.value);
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const requestData = {
+			programId: programId,
+			userId: trainerId,
+			amount: amount,
+		};
 
-		// Add your payment processing logic here
-
-		// For demonstration purposes, let's just log the input values
-		console.log('Card Number:', cardNumber);
-		console.log('Expiry Date:', expiryDate);
-		console.log('CVC:', cvc);
+		dispatch(payPayment(requestData));
 	};
 
 	return (
@@ -44,6 +51,19 @@ const PaymentForm = () => {
 							<h5 className='card-title text-white'>Payment Information</h5>
 							<form onSubmit={handleSubmit}>
 								<div className='form-group'>
+									<label htmlFor='cardNumber ' className='text-white'>
+										Ammount
+									</label>
+									<input
+										type='text'
+										className='form-control'
+										id='cardNumber'
+										value={amount}
+										onChange={handleSetAmountChange}
+										required
+									/>
+								</div>
+								{/* <div className='form-group'>
 									<label htmlFor='cardNumber ' className='text-white'>
 										Card Number
 									</label>
@@ -82,7 +102,7 @@ const PaymentForm = () => {
 										onChange={handleCvcChange}
 										required
 									/>
-								</div>
+								</div> */}
 
 								<button type='submit' className='btn btn-primary mt-2'>
 									Submit Payment

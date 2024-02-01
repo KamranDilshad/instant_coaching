@@ -1,20 +1,23 @@
-// UpdateProgram.js
 import React, { useState } from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
 import BackButton from '../Button';
 import FooterSection from '../../home/FooterSection';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import { updateLunchProgram } from '../../../redux/actions/LunchProgramAction';
 
 const UpdateProgram = () => {
-	// const user = useSelector((state) => state.auth.user);
+	const { id } = useParams();
+	const proramData = useSelector((state) => state?.programs?.lunchPrograms);
+	const existProgram = proramData.filter((program) => program._id == id);
+	const { title, description, price } = existProgram[0];
 	const dispatch = useDispatch();
 	const navigation = useNavigate();
 	const [UpdateProgramData, setUpdateProgramData] = useState({
-		title: user.title,
-		description: user.description,
-		price: user.price,
+		title: title,
+		description: description,
+		price: price,
+		_id: id,
 	});
 
 	const handleChange = (e) => {
@@ -27,9 +30,7 @@ const UpdateProgram = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// Add logic to handle the submission of Update program data
-		console.log('Update program data submitted:', UpdateProgramData);
-		dispatch(updateLunchProgram(UpdateProgram));
+		dispatch(updateLunchProgram(UpdateProgramData));
 		navigation('/viewprogram');
 	};
 

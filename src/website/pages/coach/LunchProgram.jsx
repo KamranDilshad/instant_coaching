@@ -1,4 +1,3 @@
-// LunchProgram.js
 import React, { useState } from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
 import BackButton from '../Button';
@@ -26,8 +25,6 @@ const LunchProgram = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// Add logic to handle the submission of lunch program data
-		console.log('Lunch program data submitted:', lunchProgramData);
 		dispatch(addLunchProgram(lunchProgramData));
 		navigation('/viewprogram');
 	};

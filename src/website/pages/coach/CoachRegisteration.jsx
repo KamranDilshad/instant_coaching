@@ -39,23 +39,7 @@ const CoachRegisteration = () => {
 			subCategory: Yup.string().required('Required'),
 			image: Yup.mixed().required('Required'),
 		}),
-		// onSubmit: (values) => {
-		// 	const requestData = {
-		// 		firstName: values.firstName,
-		// 		lastName: values.lastName,
-		// 		password: values.password,
-		// 		confirmPassword: values.confirmPassword,
-		// 		email: values.email,
-		// 		phone: values.phone,
-		// 		category: values.category,
-		// 		subCategory: values.subCategory,
-		// 		gender: values.gender,
-		// 		image: values.image,
-		// 	};
-		// 	// Dispatch the action to post data to Redux
-		// 	dispatch(registerCoach(requestData));
-		// 	navigation('/login');
-		// },
+
 		onSubmit: async (values) => {
 			const formData = new FormData();
 			formData.append('firstName', values.firstName);

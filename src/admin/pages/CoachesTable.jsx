@@ -32,6 +32,7 @@ const CoachesTable = () => {
 	useEffect(() => {
 		console.log('🚀 ~ CoachesTable ~ allCoaches:', allCoaches);
 		dispatch(getAllCoach());
+		dispatch(approveUser());
 	}, [dispatch]);
 
 	const goToPage = (page) => {

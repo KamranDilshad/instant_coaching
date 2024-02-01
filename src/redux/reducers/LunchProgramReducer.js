@@ -2,8 +2,10 @@ import {
 	GET_ALL_LUNCH_PROGRAMS,
 	ADD_LUNCH_PROGRAM_SUCCESS,
 	ADD_LUNCH_PROGRAM_FAILURE,
-	UPDATE_LUNCH_PROGRAM,
-	DELETE_LUNCH_PROGRAM,
+	UPDATE_LUNCH_PROGRAM_SUCCESS,
+	UPDATE_LUNCH_PROGRAM_FAILURE,
+	DELETE_LUNCH_PROGRAM_SUCCESS,
+	DELETE_LUNCH_PROGRAM_FAILURE,
 } from '../actions/LunchProgramAction';
 
 const initialState = {
@@ -30,16 +32,21 @@ const lunchProgramReducer = (state = initialState, action) => {
 				...state,
 				error: action.payload,
 			};
-		case UPDATE_LUNCH_PROGRAM:
+		case UPDATE_LUNCH_PROGRAM_SUCCESS:
 			const updatedPrograms = state.lunchPrograms.map((program) =>
-				program._id === action.payload._id ? action.payload : program
+				program._id === action.payload.id ? action.payload : program
 			);
 			return {
 				...state,
 				lunchPrograms: updatedPrograms,
 				error: null,
 			};
-		case DELETE_LUNCH_PROGRAM:
+		case UPDATE_LUNCH_PROGRAM_FAILURE:
+			return {
+				...state,
+				error: action.payload,
+			};
+		case DELETE_LUNCH_PROGRAM_SUCCESS:
 			const filteredPrograms = state.lunchPrograms.filter(
 				(program) => program._id !== action.payload
 			);
@@ -47,6 +54,11 @@ const lunchProgramReducer = (state = initialState, action) => {
 				...state,
 				lunchPrograms: filteredPrograms,
 				error: null,
+			};
+		case DELETE_LUNCH_PROGRAM_FAILURE:
+			return {
+				...state,
+				error: action.payload,
 			};
 		default:
 			return state;
