@@ -51,14 +51,14 @@ const Ecommerce = () => {
 							<BsCurrencyDollar />
 						</button>
 					</div>
-					<div className='mt-6'>
+					{/* <div className='mt-6'>
 						<Button
 							color='white'
 							bgColor={currentColor}
 							text='Download'
 							borderRadius='10px'
 						/>
-					</div>
+					</div> */}
 				</div>
 				<div className='flex m-3 flex-wrap justify-center gap-1 items-center'>
 					{earningData.map((item) => (
@@ -129,12 +129,12 @@ const Ecommerce = () => {
 								/>
 							</div>
 							<div className='mt-10'>
-								<Button
+								{/* <Button
 									color='white'
 									bgColor={currentColor}
 									text='Download Report'
 									borderRadius='10px'
-								/>
+								/> */}
 							</div>
 						</div>
 						<div>
@@ -220,15 +220,13 @@ const Ecommerce = () => {
 					</div>
 					<div className='flex justify-between items-center mt-5 border-t-1 border-color'>
 						<div className='mt-3'>
-							<Button
+							{/* <Button
 								color='white'
 								bgColor={currentColor}
 								text='Add'
 								borderRadius='10px'
-							/>
+							/> */}
 						</div>
-
-						<p className='text-gray-400 text-sm'>36 Recent Transactions</p>
 					</div>
 				</div>
 				<div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-96 md:w-760'>
@@ -241,7 +239,7 @@ const Ecommerce = () => {
 					</div>
 				</div>
 			</div>
-
+			{/* 
 			<div className='flex flex-wrap justify-center'>
 				<div className='md:w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3'>
 					<div className='flex justify-between'>
@@ -386,7 +384,7 @@ const Ecommerce = () => {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };

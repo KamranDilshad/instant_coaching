@@ -13,7 +13,10 @@ const UserProfile = () => {
 	const admin = useSelector((state) => state?.auth?.user);
 	const navigation = useNavigate();
 
-	const handleLogout = () => navigation('/admin/');
+	const handleLogout = () => {
+		console.log('this is logout button');
+		navigation('/admin/');
+	};
 
 	return (
 		<div className='nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96'>
@@ -47,14 +50,20 @@ const UserProfile = () => {
 			</div>
 
 			<div className='mt-5'>
-				<Button
+				{/* <Button
 					color='white'
 					bgColor={currentColor}
 					text='Logout'
 					borderRadius='10px'
 					width='full'
 					onClick={handleLogout}
-				/>
+				/> */}
+				<button
+					className={` bg-${currentColor} text-${currentColor} rounded-md p-2 cursor-pointer `}
+					onClick={handleLogout}
+				>
+					Logout
+				</button>
 			</div>
 		</div>
 	);
