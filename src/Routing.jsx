@@ -1,4 +1,6 @@
 import React from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './website/pages/Login';
 import Home from './website/home/Home';
@@ -18,98 +20,106 @@ import ProtectedRoute from './ProtectedRoutes';
 import { useSelector } from 'react-redux';
 import UpdateProgram from './website/pages/coach/UpdateProgram';
 
+
 function Routing() {
-	const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
-	console.log('🚀 ~ Routing ~ isAuthenticated:', isAuthenticated);
-	return (
-		<BrowserRouter>
-			<Routes>
-				{/* Website Routes */}
-				<Route path='/' element={<Home />} />
-				<Route path='/login' element={<Login />} />
-				<Route path='/aboutus' element={<AboutUs />} />
-				<Route path='/coachregister' element={<CoachRegisteration />} />
-				<Route path='/traineeregister' element={<TraineeRegister />} />
+  console.log("Before", process.env.REACT_APP_STRIPE_PK)
+  const stripePromise = loadStripe("pk_test_51KHkSsGpMGlAcNZe4RTGbHNAMaNFrGsQszQEUhRsobpuRLTZmW5v9RUC4mKifMvP06IOF8XDUJkDmfYQnFr0O0SI007LIYQlIJ");
+  console.log("Stripe Promise", stripePromise)
+  const isAuthenticated = useSelector((state) => state?.auth?.isAuthenticated);
+  console.log('🚀 ~ Routing ~ isAuthenticated:', isAuthenticated);
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Website Routes */}
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/aboutus' element={<AboutUs />} />
+        <Route path='/coachregister' element={<CoachRegisteration />} />
+        <Route path='/traineeregister' element={<TraineeRegister />} />
 
-				<Route
-					path='/profile'
-					element={
-						<ProtectedRoute
-							element={<ProfileView />}
-							isAuthenticated={isAuthenticated}
-						/>
-					}
-				/>
-				<Route
-					path='/cricketservices/:id'
-					element={
-						<ProtectedRoute
-							element={<CricketServices />}
-							isAuthenticated={isAuthenticated}
-						/>
-					}
-				/>
-				<Route
-					path='/cricketcoach'
-					element={
-						<ProtectedRoute
-							element={<CricketCoaches />}
-							isAuthenticated={isAuthenticated}
-						/>
-					}
-				/>
-				<Route
-					path='/footballcoach'
-					element={
-						<ProtectedRoute
-							element={<FootballCoaches />}
-							isAuthenticated={isAuthenticated}
-						/>
-					}
-				/>
-				<Route
-					path='/lunchprogram'
-					element={
-						<ProtectedRoute
-							element={<LunchProgram />}
-							isAuthenticated={isAuthenticated}
-						/>
-					}
-				/>
-				<Route
-					path='/viewprogram'
-					element={
-						<ProtectedRoute
-							element={<ProgramTableView />}
-							isAuthenticated={isAuthenticated}
-						/>
-					}
-				/>
-				<Route
-					path='/updateprogram/:id'
-					element={
-						<ProtectedRoute
-							element={<UpdateProgram />}
-							isAuthenticated={isAuthenticated}
-						/>
-					}
-				/>
-				<Route
-					path='/payment/:programId/:trainerId'
-					element={
-						<ProtectedRoute
-							element={<StripePaymentForm />}
-							isAuthenticated={isAuthenticated}
-						/>
-					}
-				/>
+        <Route
+          path='/profile'
+          element={
+            <ProtectedRoute
+              element={<ProfileView />}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
+        <Route
+          path='/cricketservices/:id'
+          element={
+            <ProtectedRoute
+              element={<CricketServices />}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
+        <Route
+          path='/cricketcoach'
+          element={
+            <ProtectedRoute
+              element={<CricketCoaches />}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
+        <Route
+          path='/footballcoach'
+          element={
+            <ProtectedRoute
+              element={<FootballCoaches />}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
+        <Route
+          path='/lunchprogram'
+          element={
+            <ProtectedRoute
+              element={<LunchProgram />}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
+        <Route
+          path='/viewprogram'
+          element={
+            <ProtectedRoute
+              element={<ProgramTableView />}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
+        <Route
+          path='/updateprogram/:id'
+          element={
+            <ProtectedRoute
+              element={<UpdateProgram />}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
+        <Route
+          path='/payment/:programId/:trainerId'
+          element={
+            <ProtectedRoute
+              element={
+                <Elements stripe={stripePromise}>
+                  <StripePaymentForm />
+                </Elements>
+              }
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
 
-				{/* Admin Routes */}
-				<Route path='/admin/' element={<LoginAdmin />} />
-				<Route path='/admin/app/*' element={<MainAdmin />} />
-			</Routes>
-		</BrowserRouter>
-	);
+        {/* Admin Routes */}
+        <Route path='/admin/' element={<LoginAdmin />} />
+        <Route path='/admin/app/*' element={<MainAdmin />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default Routing;
