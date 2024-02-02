@@ -37,11 +37,8 @@ const ServiceSection = () => {
 										icon='emojione-monotone:cricket-game'
 									></iconify-icon>
 								</div>
-								<h4>
-									<Link to={'/cricketservices'}>CRICKET COACHING</Link>
-								</h4>
+								<h4>CRICKET COACHING</h4>
 								<p>
-									{' '}
 									Learn and refine your cricket skills with personalized
 									coaching tailored to your level.
 								</p>
@@ -57,9 +54,7 @@ const ServiceSection = () => {
 								<div className='icon'>
 									<iconify-icon icon='ion:football-outline'></iconify-icon>
 								</div>
-								<h4>
-									<Link to={'/cricketservices'}>FootBall COACHING</Link>
-								</h4>
+								<h4>FootBall COACHING</h4>
 								<p>
 									Take your football skills to new heights with specialized
 									coaching tailored to your position.
@@ -76,9 +71,7 @@ const ServiceSection = () => {
 								<div className='icon'>
 									<iconify-icon icon='emojione-monotone:field-hockey'></iconify-icon>
 								</div>
-								<h4>
-									<Link to={'/cricketservices'}>Hockey COACHING</Link>
-								</h4>
+								<h4>Hockey COACHING</h4>
 								<p>
 									Elevate your hockey game with expert coaching designed to
 									enhance your skills.
@@ -95,9 +88,7 @@ const ServiceSection = () => {
 								<div className='icon'>
 									<iconify-icon icon='iconoir:gym'></iconify-icon>
 								</div>
-								<h4>
-									<Link to={'/cricketservices'}>Workout COACHING</Link>
-								</h4>
+								<h4>Workout COACHING</h4>
 								<p>
 									Achieve your fitness goals with personalized workout programs
 									designed by expert coaches.

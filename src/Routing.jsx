@@ -6,9 +6,7 @@ import Login from './website/pages/Login';
 import Home from './website/home/Home';
 import AboutUs from './website/pages/AboutUs';
 import CoachRegisteration from './website/pages/coach/CoachRegisteration';
-import CricketCoaches from './website/pages/coach/CricketCoaches';
 import FootballCoaches from './website/pages/FootballCoaches';
-import CricketServices from './website/pages/coach/CricketServesis';
 import TraineeRegister from './website/pages/TraineeRegister';
 import MainAdmin from './admin/MainAdmin';
 import ProfileView from './website/pages/coach/Profile';
@@ -19,6 +17,12 @@ import LoginAdmin from './admin/LoginAdmin';
 import ProtectedRoute from './ProtectedRoutes';
 import { useSelector } from 'react-redux';
 import UpdateProgram from './website/pages/coach/UpdateProgram';
+import CoachesCategory from './website/pages/coach/CoachesCategory';
+import CoachesServesis from './website/pages/coach/CoachesServesis';
+import FootballCategory from './website/pages/coach/FootballCategory';
+import CricketCategory from './website/pages/coach/CricketCategory';
+import HockeyCategory from './website/pages/coach/HockeyCategory';
+import FitnessCategory from './website/pages/coach/FitnessCategory';
 
 function Routing() {
 	console.log('Before', process.env.REACT_APP_STRIPE_PK);
@@ -48,28 +52,58 @@ function Routing() {
 					}
 				/>
 				<Route
-					path='/cricketservices/:id'
+					path='/coachesservices/:id'
 					element={
 						<ProtectedRoute
-							element={<CricketServices />}
+							element={<CoachesServesis />}
 							isAuthenticated={isAuthenticated}
 						/>
 					}
 				/>
-				<Route
+				{/* <Route
 					path='/cricketcoach'
 					element={
 						<ProtectedRoute
-							element={<CricketCoaches />}
+							element={<CoachesCategory />}
+							isAuthenticated={isAuthenticated}
+						/>
+					}
+				/> */}
+
+				<Route
+					path='/cricketcategory'
+					element={
+						<ProtectedRoute
+							element={<CricketCategory />}
+							isAuthenticated={isAuthenticated}
+						/>
+					}
+				/>
+
+				<Route
+					path='/footballcategory'
+					element={
+						<ProtectedRoute
+							element={<FootballCategory />}
+							isAuthenticated={isAuthenticated}
+						/>
+					}
+				/>
+
+				<Route
+					path='/hockeycategory'
+					element={
+						<ProtectedRoute
+							element={<HockeyCategory />}
 							isAuthenticated={isAuthenticated}
 						/>
 					}
 				/>
 				<Route
-					path='/footballcoach'
+					path='/fitnesscategory'
 					element={
 						<ProtectedRoute
-							element={<FootballCoaches />}
+							element={<FitnessCategory />}
 							isAuthenticated={isAuthenticated}
 						/>
 					}

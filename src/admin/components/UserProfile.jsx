@@ -14,7 +14,6 @@ const UserProfile = () => {
 	const navigation = useNavigate();
 
 	const handleLogout = () => {
-		console.log('this is logout button');
 		navigation('/admin/');
 	};
 

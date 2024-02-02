@@ -181,15 +181,23 @@ const CoachRegisteration = () => {
 											</div>
 
 											<div className='form-group mb-3'>
-												<input
-													type='text'
-													className='form-control'
-													placeholder='Category *'
+												<label htmlFor='category'>Category *</label>
+												<select
+													id='category'
 													name='category'
+													className='form-control'
 													value={formik.values.category}
 													onChange={formik.handleChange}
-												/>
-												{formik.touched.lastName && formik.errors.category ? (
+												>
+													<option value='' disabled>
+														Select Category
+													</option>
+													<option value='Cricket'>Cricket</option>
+													<option value='Football'>Football</option>
+													<option value='Hockey'>Hockey</option>
+													<option value='Fitness'>Fitness</option>
+												</select>
+												{formik.touched.category && formik.errors.category ? (
 													<div className='error'>{formik.errors.category}</div>
 												) : null}
 											</div>

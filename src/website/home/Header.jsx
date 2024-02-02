@@ -70,13 +70,13 @@ const Header = () => {
 										</a>
 										<ul>
 											<li>
-												<a href='morepages/cricketcoaches.html'>Cricket</a>
+												<Link to={'/cricketcategory'}>Cricket</Link>
 											</li>
 											<li>
-												<a href='#'>Football</a>
+												<Link to={'/footballcategory'}>Football</Link>
 											</li>
 											<li>
-												<a href='#'>Hockey</a>
+												<Link to={'/hockeycategory'}>Hockey</Link>
 											</li>
 										</ul>
 									</li>
@@ -87,7 +87,7 @@ const Header = () => {
 										</a>
 										<ul>
 											<li>
-												<a href='#'>Workout</a>
+												<Link to={'/fitnesscategory'}>Workout</Link>
 											</li>
 										</ul>
 									</li>

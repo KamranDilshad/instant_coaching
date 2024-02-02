@@ -21,6 +21,15 @@ import { Link } from 'react-router-dom';
 const ProgramTableView = () => {
 	const dispatch = useDispatch();
 	const programs = useSelector((state) => state?.programs?.lunchPrograms);
+	const coach = useSelector((state) => state?.auth?.user);
+	console.log('🚀 ~ ProgramTableView ~ coach:', coach);
+
+	console.log('🚀 ~ ProgramTableView ~ programs:', programs);
+
+	const existCoach = programs.filter(
+		(program) => program.trainerId === coach._id
+	);
+	console.log('🚀 ~ ProgramTableView ~ existCoach:', existCoach);
 	const [currentPage, setCurrentPage] = useState(1);
 	const programsPerPage = 5; // Adjust as needed
 
@@ -43,7 +52,7 @@ const ProgramTableView = () => {
 	// Get current programs based on pagination
 	const indexOfLastProgram = currentPage * programsPerPage;
 	const indexOfFirstProgram = indexOfLastProgram - programsPerPage;
-	const currentPrograms = programs.slice(
+	const currentPrograms = existCoach.slice(
 		indexOfFirstProgram,
 		indexOfLastProgram
 	);

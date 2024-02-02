@@ -29,7 +29,7 @@ const CoachSection = () => {
 									<iconify-icon icon='noto:cricket-game'></iconify-icon>
 								</div>
 								<h2>
-									<Link to={'/cricketcoach'}>CRICKET COACHES</Link>
+									<Link to={'/cricketcategory'}>CRICKET COACHES</Link>
 								</h2>
 							</div>
 						</div>
@@ -44,7 +44,7 @@ const CoachSection = () => {
 									<iconify-icon icon='solar:football-bold'></iconify-icon>
 								</div>
 								<h2>
-									<Link to={'/footballcoach'}>FOOTBALL COACHES</Link>
+									<Link to={'/footballCategory'}>FOOTBALL COACHES</Link>
 								</h2>
 							</div>
 						</div>
@@ -59,7 +59,7 @@ const CoachSection = () => {
 									<iconify-icon icon='noto:field-hockey'></iconify-icon>
 								</div>
 								<h2>
-									<Link to={'/footballcoach'}>HOCKEY CAOCHES</Link>
+									<Link to={'/hockeycategory'}>HOCKEY CAOCHES</Link>
 								</h2>
 							</div>
 						</div>
@@ -74,7 +74,7 @@ const CoachSection = () => {
 									<iconify-icon icon='arcticons:home-workouts'></iconify-icon>
 								</div>
 								<h2>
-									<Link to={'/footballcoach'}>WORKOUT CAOCHES</Link>
+									<Link to={'/fitnessCtegory'}>WORKOUT CAOCHES</Link>
 								</h2>
 							</div>
 						</div>
